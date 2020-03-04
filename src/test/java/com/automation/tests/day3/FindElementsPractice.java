@@ -12,7 +12,7 @@ public class FindElementsPractice {
 //        WebDriver driver = new ChromeDriver();
 
         WebDriver driver = DriverFactory.CreateADriver("chrome");
-        driver.get("Http://practice.cybertekschool.com/sign_up");
+        driver.get("http://practice.cybertekschool.com/sign_up");
 
 
 
