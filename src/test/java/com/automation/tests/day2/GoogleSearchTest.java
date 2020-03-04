@@ -1,4 +1,4 @@
-package day2;
+package com.automation.tests.day2;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -23,6 +23,13 @@ public class GoogleSearchTest {
         //use Key.ENTER --> perform keyboard click
         search.sendKeys("Java", Keys.ENTER);
         Thread.sleep(3000);
+
+        //if see <a> element, it calls link
+        //visible text of this link, can be used by selenium to find
+        WebElement news = driver.findElement(By.linkText("News"));
+        news.click();
+        Thread.sleep(4000);
+
 
 
         driver.quit();
