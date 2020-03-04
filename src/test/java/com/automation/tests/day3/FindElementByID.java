@@ -27,6 +27,20 @@ public class FindElementByID {
 
         Thread.sleep(3000);
 
+
+        //let's click on Logout Button,
+        //every element with <a> tag is a link
+        //if you have couple spaces in the text, just use partialLinkText instead of linkText
+        //linkText - equals()
+        //partialLinkText - contains()
+
+        WebElement logout = driver.findElement(By.linkText("Logout"));
+        String href= logout.getAttribute("href");
+        System.out.println("href = " + href);
+
+        logout.click();
+        Thread.sleep(3000);
+
         driver.quit();
 
 
