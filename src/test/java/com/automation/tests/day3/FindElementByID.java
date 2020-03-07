@@ -36,7 +36,9 @@ public class FindElementByID {
 
         WebElement logout = driver.findElement(By.linkText("Logout"));
         String href= logout.getAttribute("href");
+        String className = logout.getAttribute("class");
         System.out.println("href = " + href);
+        System.out.println("className = " + className);
 
         logout.click();
         Thread.sleep(3000);
