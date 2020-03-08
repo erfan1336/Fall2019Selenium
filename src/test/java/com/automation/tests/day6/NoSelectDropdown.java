@@ -4,6 +4,9 @@ import com.automation.tests.utilities.BrowserUtils;
 import com.automation.tests.utilities.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class NoSelectDropdown {
 
@@ -15,6 +18,15 @@ public class NoSelectDropdown {
 
         driver.findElement(By.id("dropdownMenuLink")).click(); //to expand dropdown menu
         BrowserUtils.wait(2);
+
+        List<WebElement> allLinks = driver.findElements(By.className("dropdown-item"));
+        for (WebElement link : allLinks){
+            System.out.println(link.getText() + " : " + link.getAttribute("href"));
+        }
+
+
+
+
         driver.findElement(By.linkText("Amazon")).click(); //select and click on option
 
         /**
@@ -24,6 +36,8 @@ public class NoSelectDropdown {
          * - value(<option> value = <"smth">
          * - index
          */
+
+
 
 
 
