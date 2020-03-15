@@ -33,6 +33,8 @@ public class VehiclePageTests {
 
     private By subtitle = By.className("oro-subtitle");
 
+    private By pageNumberBy = By.cssSelector("input[type='number']");
+
     @Test
     public void verifyPageSubTitle(){
         driver.findElement(usernameBy).sendKeys(username);
@@ -40,6 +42,42 @@ public class VehiclePageTests {
 
         BrowserUtils.wait(5);
 
+
+
+
+        //find subtitle Element
+        WebElement subtitleElement = driver.findElement(subtitle);
+        System.out.println(subtitleElement.getText());
+
+        String expected = "All Cars";
+        String actual = subtitleElement.getText();
+        Assert.assertEquals(actual,expected);
+    }
+
+    @Test(description = "this method will verify the page number is equal to '1' ")
+    public void verifyPageNumber(){
+
+        String expected = "1";
+        String actual = driver.findElement(pageNumberBy).getAttribute("value");
+
+        Assert.assertEquals(actual,expected);
+
+
+    }
+
+    @BeforeMethod
+    public void setup(){
+        WebDriverManager.chromedriver().version("79.0").setup();
+        driver = new ChromeDriver();
+        driver.get(URL);
+        driver.manage().window().maximize();
+
+        //login
+        driver.findElement(usernameBy).sendKeys(username);
+        driver.findElement(passwordBy).sendKeys(password, Keys.ENTER);
+
+        //put more wait here as well, if didn't click
+        BrowserUtils.wait(5);
 
         //Click on fleet
         //driver.findElement(fleetBy).click();
@@ -55,22 +93,7 @@ public class VehiclePageTests {
         driver.findElement(By.linkText("Vehicles")).click();
         BrowserUtils.wait(5);
 
-        //find subtitle Element
-        WebElement subtitleElement = driver.findElement(subtitle);
-        System.out.println(subtitleElement.getText());
 
-        String expected = "All cars";
-        String actual = subtitleElement.getText();
-        Assert.assertEquals(actual,expected);
-    }
-
-
-    @BeforeMethod
-    public void setup(){
-        WebDriverManager.chromedriver().version("79.0").setup();
-        driver = new ChromeDriver();
-        driver.get(URL);
-        driver.manage().window().maximize();
     }
 
     @AfterMethod
