@@ -31,9 +31,40 @@ public class SearchTests {
                 System.out.println(searchItem.getText());
                 //verify that every search result contains java word
                 Assert.assertTrue(var.toLowerCase().contains("java"));
+                System.out.println(var.toLowerCase());
+                System.out.println();
             }
-
         }
+    }
+
+    /**
+     * Given user is on the amazon.com page
+     * when user enters java as a search item
+     * Then user clicks on the search button
+     * And user clicks on the first search item
+     * Then verify
+     *
+     */
+    @Test(description = "Search for Java book on amazon")
+    public void amazonSearchTest(){
+
+        driver.get("http://amazon.com");
+        driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Java",Keys.ENTER);
+        BrowserUtils.wait(3);
+
+        List<WebElement> searchItems = driver.findElements(By.tagName("h2"));
+        //click on the first item
+        searchItems.get(0).click();
+        BrowserUtils.wait(3);
+
+        WebElement productTitle = driver.findElement(By.id("productTitle"));
+        String productTitleString = productTitle.getText();
+        System.out.println(productTitleString);
+
+        Assert.assertTrue(productTitleString.contains("Java"));
+
+
+
 
     }
 
