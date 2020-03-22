@@ -52,14 +52,20 @@ public class SearchTests {
         driver.findElement(By.id("twotabsearchtextbox")).sendKeys("Java",Keys.ENTER);
         BrowserUtils.wait(3);
 
-        List<WebElement> searchItems = driver.findElements(By.tagName("h2"));
+        List<WebElement> searchItems = driver.findElements(By.xpath("//h2//a"));
+
+        for (WebElement searchItem : searchItems){
+            System.out.println(searchItem.getText());
+        }
+
         //click on the first item
         searchItems.get(0).click();
         BrowserUtils.wait(3);
 
-        WebElement productTitle = driver.findElement(By.id("productTitle"));
+        WebElement productTitle = driver.findElement(By.id("title"));
         String productTitleString = productTitle.getText();
-        System.out.println(productTitleString);
+        System.out.println("=======================================");
+        System.out.println("Here is the Title: " + productTitleString);
 
         Assert.assertTrue(productTitleString.contains("Java"));
 
