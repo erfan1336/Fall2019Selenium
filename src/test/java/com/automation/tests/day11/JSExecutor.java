@@ -29,9 +29,14 @@ public class JSExecutor {
 
         //executeScript -> this method executes javascript code
         //we provide js code as a string
+        //return document.title --> is a javascript code
+        //document --> represents HTML page
         String actualTitle = (String) js.executeScript("return document.title");
 
         Assert.assertEquals(actualTitle,expectedTitle);
+
+        System.out.println("actualTitle = " + actualTitle);
+        System.out.println("expectedTitle = " + expectedTitle);
 
 
     }
