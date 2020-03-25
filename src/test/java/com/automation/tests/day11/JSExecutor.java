@@ -1,8 +1,11 @@
 package com.automation.tests.day11;
 
+import com.automation.tests.utilities.BrowserUtils;
 import com.automation.tests.utilities.DriverFactory;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -40,6 +43,35 @@ public class JSExecutor {
 
 
     }
+
+    @Test
+    public void clickTest(){
+
+
+        WebElement link = driver.findElement(By.linkText("Multiple Buttons"));
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        js.executeScript("arguments[0].click",link);
+
+        BrowserUtils.wait(4);
+
+       // WebElement button6 = driver.findElement(By.id("disappearing_button"));
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
     @AfterMethod
     public void teardown(){
         driver.quit();
