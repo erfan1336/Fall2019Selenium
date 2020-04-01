@@ -12,7 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class CalendarEvent {
+public class CalendarEventsPageTests {
 
     private By usernameBy = By.id("prependedInput");
     private By passwordBy = By.id("prependedInput2");

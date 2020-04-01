@@ -2,9 +2,12 @@ package com.automation.pages.activities;
 
 import com.automation.pages.AbstractPageBase;
 import com.automation.tests.utilities.BrowserUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class CalendarEventsPage extends AbstractPageBase {
 
@@ -14,9 +17,23 @@ public class CalendarEventsPage extends AbstractPageBase {
     @FindBy(className = "select2-chosen")
     private WebElement owner;
 
+    @FindBy (css = "[id^='date_selector_oro_calendar_event_form_start']")
+    private WebElement startDate;
+
+
+
+    @FindBy(className = "grid-header-cell__label")
+    private List<WebElement> columnNames;
+
+    public List<String> getColumnNames(){
+        BrowserUtils.waitForPageToLoad(20);
+        return BrowserUtils.getTextFromWebElements(columnNames);
+    }
+
 
     public String getOwnerName(){
         BrowserUtils.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("select2-chosen")));
         wait.until(ExpectedConditions.visibilityOf(owner));
         return owner.getText().trim();
     }
@@ -24,6 +41,12 @@ public class CalendarEventsPage extends AbstractPageBase {
     public void clickToCreateCalendarEvent(){
         BrowserUtils.waitForPageToLoad(10);
         wait.until(ExpectedConditions.elementToBeClickable(createCalendarEvent)).click();
+    }
+
+    public String getStartDate(){
+        BrowserUtils.waitForPageToLoad(10);
+        wait.until(ExpectedConditions.visibilityOf(startDate));
+        return startDate.getAttribute("value");
     }
 
 }

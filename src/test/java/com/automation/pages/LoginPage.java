@@ -12,7 +12,7 @@ public class LoginPage {
 
     @FindBy(id = "prependedInput")
     private WebElement username;
-//    public WebElement username2 = Driver.getDriver().findElement(By.id("prependedInput"));
+//  public WebElement username2 = Driver.getDriver().findElement(By.id("prependedInput"));
 
     @FindBy(id = "prependedInput2")
     private WebElement password;
@@ -52,6 +52,7 @@ public class LoginPage {
     }
 
     /**
+     * Overloading the above Login Method
      * Method to login, version #2
      * Login as a default user
      * Credentials will be retrieved from configuration.properties file
