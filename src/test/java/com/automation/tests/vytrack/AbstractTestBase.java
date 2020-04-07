@@ -9,10 +9,7 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
@@ -28,15 +25,21 @@ public abstract class AbstractTestBase {
     protected ExtentTest test;
 
     @BeforeTest
-    public void setupTest(){
+    @Parameters("reportName")
+
+    public void setupTest(@Optional String reportName){
+
+        System.out.println("Report name:" +reportName);
 
         report = new ExtentReports();
+        reportName = reportName == null? "report.html" : reportName + ".html";
+
         String reportPath = "";
         //location of report file
         if (System.getProperty("os.name").toLowerCase().contains("win")) {
-            reportPath = System.getProperty("user.dir") + "\\test-output\\report.html";
+            reportPath = System.getProperty("user.dir") + "\\test-output\\" + reportName;
         } else {
-            reportPath = System.getProperty("user.dir") + "/test-output/report.html";
+            reportPath = System.getProperty("user.dir") + "/test-output/" + reportName;
         }
 
 
@@ -71,10 +74,12 @@ public abstract class AbstractTestBase {
         if (iTestResult.getStatus() == ITestResult.FAILURE){
             //screenshot will have name of the test
             String screenshotPath = BrowserUtils.getScreenshot(iTestResult.getName());
-            test.addScreenCaptureFromPath(screenshotPath);//attach screenshot
             test.fail(iTestResult.getName());//attach test name that failed
+            BrowserUtils.wait(2);
+            test.addScreenCaptureFromPath(screenshotPath,"Failed");//attach screenshot
             test.fail(iTestResult.getThrowable());//attach console output
         }
+        BrowserUtils.wait(2);
         Driver.closeDriver();
     }
 }

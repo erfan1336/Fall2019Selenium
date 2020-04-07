@@ -17,6 +17,13 @@ import java.util.Date;
 import java.util.List;
 
 public class BrowserUtils {
+
+
+    /**
+     * Pause test for some time
+     *
+     * @param seconds
+     */
     public static void wait(int seconds){
         try {
             Thread.sleep(1000 * seconds);
@@ -40,7 +47,6 @@ public class BrowserUtils {
         }
         return textValues;
     }
-
 
 
     /**
@@ -89,7 +95,6 @@ public class BrowserUtils {
      */
     public static String getScreenshot(String name) {
         //adding date and time to screenshot name
-
         name = new Date().toString().replace(" ", "_").replace(":", "-") + "_" + name;
         //where we gonna store a screenshot
         String path = "";
@@ -112,7 +117,6 @@ public class BrowserUtils {
         try {
             //copy file to the previously specified location
             FileUtils.copyFile(source, destination);
-
         }catch (IOException e){
             e.printStackTrace();
         }

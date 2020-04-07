@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * This class will be extended by page classes
- * Ant common Web elements/locators can be stored here
+ * And common Web elements/locators can be stored here
  * Since navigation menu doesn't belong to particular page
  * We cannot really create a dedicated page class to store
  * elements from that menu

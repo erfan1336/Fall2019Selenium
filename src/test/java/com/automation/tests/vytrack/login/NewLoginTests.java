@@ -20,6 +20,9 @@ public class NewLoginTests extends AbstractTestBase {
         test = report.createTest("Verify Page Title");
         LoginPage loginPage = new LoginPage();
         loginPage.login();
+
+        //like system.out buts its goes to report as well
+        test.info("Login as store manager");//log some steps
         Assert.assertEquals(Driver.getDriver().getTitle(), "Dashboard");
         //if assertion passed, it will set test status in report to passed
         test.pass("Page Title Dashboard was verified.");
@@ -32,11 +35,14 @@ public class NewLoginTests extends AbstractTestBase {
 
     @Test
     public void verifyWarningMessage(){
+
+        test = report.createTest("warning message test");
         LoginPage loginPage = new LoginPage();
         loginPage.login("wrong", "wrong");
         Assert.assertEquals(loginPage.getWarningMessageText(), "Invalid user name or password.");
         //take a screenshot
         BrowserUtils.getScreenshot("loginPage");
+        test.pass("Warning message Test verified.");
     }
 
 
